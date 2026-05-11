@@ -1,0 +1,1251 @@
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║                    HERÁLDICA · Tu Familia, Tu Legado             ║
+║                  CERTIFICADO DE AUTORÍA Y LICENCIA               ║
+╠══════════════════════════════════════════════════════════════════╣
+║  AUTOR ORIGINAL:  Rodrigo Julio Valderrey                        ║
+║  DNI:             29.662.545                                     ║
+║  CORREO:          paraferka@gmail.com                            ║
+║  FECHA:           Mayo 2026  · VERSIÓN: 2.0 Mobile Free         ║
+╠══════════════════════════════════════════════════════════════════╣
+║  © 2026 Rodrigo Julio Valderrey — Todos los derechos reservados ║
+║  Uso personal gratuito. Prohibida reproducción comercial.        ║
+║  FIRMA: HLD-2026-RJV-29662545-HERALDICA-V2-MOBILE               ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#2C1A00">
+<meta name="author" content="Rodrigo Julio Valderrey">
+<title>HERÁLDICA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --gold:#D4A017;--gold2:#F5C842;--gold3:#FFE066;
+  --bg:#FFFDF7;--bg2:#FFF8E7;--bg3:#FFF3D0;
+  --panel:#FFFFFF;--text:#2C1A00;--text2:#6B4F1A;--muted:#A07840;
+  --border:#E8D5A0;--green:#2D6A4F;--green2:#40916C;--green3:#74C69D;
+  --blue:#2563EB;--red:#C0392B;
+  --dark:#2C1A00;--dark2:#1A0E00;
+  --tab-h:64px;--top-h:56px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  background:var(--bg);color:var(--text);
+  font-family:'Nunito',sans-serif;
+}
+
+/* ── APP SHELL ── */
+.app{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;
+  height:100dvh;
+}
+
+/* ── TOP BAR ── */
+.topbar{
+  height:var(--top-h);min-height:var(--top-h);
+  background:linear-gradient(135deg,#2C1A00,#4A2E0A);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.3);
+  z-index:100;flex-shrink:0;
+}
+.topbar-logo{display:flex;align-items:center;gap:.5rem}
+.topbar-logo svg{width:28px;height:34px}
+.topbar-title{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:900;color:var(--gold2);letter-spacing:3px}
+.topbar-right{display:flex;gap:.4rem}
+.top-ico{background:transparent;border:1px solid #ffffff22;color:#e8d5a0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer}
+
+/* ── PÁGINAS ── */
+.pages{flex:1;overflow:hidden;position:relative}
+.page{
+  position:absolute;inset:0;
+  overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  display:none;
+  padding-bottom:calc(var(--tab-h) + var(--safe-bottom) + 8px);
+}
+.page.active{display:block}
+
+/* ── TAB BAR ── */
+.tabbar{
+  height:calc(var(--tab-h) + var(--safe-bottom));
+  min-height:calc(var(--tab-h) + var(--safe-bottom));
+  background:var(--panel);
+  border-top:1.5px solid var(--border);
+  display:flex;align-items:flex-start;
+  padding-top:6px;
+  box-shadow:0 -2px 12px rgba(0,0,0,.08);
+  z-index:100;flex-shrink:0;
+}
+.tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  gap:3px;padding:4px 2px;cursor:pointer;transition:all .15s;
+  border:none;background:transparent;
+}
+.tab-icon{font-size:1.3rem;transition:transform .2s}
+.tab-label{font-size:.58rem;font-weight:800;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+.tab.active .tab-icon{transform:scale(1.15)}
+.tab.active .tab-label{color:var(--gold)}
+.tab-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0;transition:opacity .2s;margin-top:1px}
+.tab.active .tab-dot{opacity:1}
+
+/* ════════════════════════════
+   HOME
+════════════════════════════ */
+.home-hero{
+  background:linear-gradient(160deg,#2C1A00 0%,#4A2E0A 60%,#2C1A00 100%);
+  padding:1.5rem 1rem 2rem;text-align:center;
+}
+.home-hero svg{margin:0 auto .8rem;display:block;filter:drop-shadow(0 0 12px rgba(212,160,23,.4))}
+.home-hero h2{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold2);letter-spacing:3px;margin-bottom:.4rem}
+.home-hero p{color:#c9a96e;font-size:.82rem;line-height:1.6;margin-bottom:1.2rem}
+.hero-btns{display:flex;flex-direction:column;gap:.6rem;max-width:280px;margin:0 auto}
+.btn-hero{padding:.75rem 1rem;border-radius:14px;font-weight:800;font-size:.85rem;cursor:pointer;border:none;transition:all .2s;letter-spacing:.3px}
+.btn-hero.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#2C1A00}
+.btn-hero.secondary{background:transparent;border:2px solid var(--gold);color:var(--gold2)}
+
+.feat-list{padding:1rem}
+.feat-item{display:flex;align-items:center;gap:.8rem;padding:.8rem;background:var(--panel);border:1.5px solid var(--border);border-radius:14px;margin-bottom:.6rem}
+.feat-icon{font-size:1.6rem;flex-shrink:0;width:44px;height:44px;background:var(--bg2);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.feat-item h4{font-weight:800;font-size:.82rem;color:var(--text);margin-bottom:2px}
+.feat-item p{font-size:.72rem;color:var(--muted);line-height:1.4}
+
+/* ════════════════════════════
+   ÁRBOL
+════════════════════════════ */
+.tree-top{
+  padding:.8rem 1rem;background:var(--panel);
+  border-bottom:1.5px solid var(--border);
+  position:sticky;top:0;z-index:10;
+}
+.tree-stats{display:flex;gap:.5rem;margin-bottom:.6rem}
+.stat-pill{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.4rem .5rem;text-align:center}
+.stat-pill .n{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--gold);display:block}
+.stat-pill .l{font-size:.58rem;font-weight:800;color:var(--muted);text-transform:uppercase}
+
+/* BARRA GLOBAL */
+.global-prog{margin-bottom:.4rem}
+.gp-row{display:flex;justify-content:space-between;margin-bottom:3px}
+.gp-label{font-size:.65rem;font-weight:800;color:var(--text2);text-transform:uppercase}
+.gp-pct{font-family:'Cinzel',serif;font-size:.75rem;font-weight:700;color:var(--gold)}
+.gp-bar{height:6px;background:var(--border);border-radius:6px;overflow:hidden}
+.gp-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--green2));transition:width .5s}
+
+.tree-actions{display:flex;gap:.4rem}
+.act-btn{flex:1;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:.45rem .3rem;font-size:.65rem;font-weight:800;color:var(--text2);cursor:pointer;text-align:center;transition:all .15s}
+.act-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#2C1A00;border-color:transparent}
+.act-btn:active{transform:scale(.96)}
+
+/* LISTA DE MIEMBROS */
+.members-list{padding:.6rem}
+.member-card{display:flex;align-items:center;gap:.8rem;padding:.8rem;background:var(--panel);border:1.5px solid var(--border);border-radius:14px;margin-bottom:.5rem;cursor:pointer;transition:all .15s;position:relative}
+.member-card:active{transform:scale(.98);border-color:var(--gold)}
+.member-photo{width:52px;height:52px;border-radius:12px;object-fit:cover;border:2px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;overflow:hidden}
+.member-photo img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.member-body{flex:1;min-width:0}
+.member-name{font-weight:800;font-size:.88rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.member-role{font-size:.65rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px}
+.member-dates{font-size:.62rem;color:var(--muted);margin-top:1px}
+/* Mini barra de progreso en card */
+.member-prog{margin-top:.4rem}
+.mp-row{display:flex;justify-content:space-between;margin-bottom:2px}
+.mp-pct{font-size:.6rem;font-weight:800;color:var(--muted)}
+.mp-bar{height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+.mp-fill{height:100%;border-radius:4px;transition:width .4s}
+.mp-fill.low{background:#E74C3C}
+.mp-fill.mid{background:var(--gold)}
+.mp-fill.high{background:var(--gold2)}
+.mp-fill.full{background:var(--green2)}
+.member-actions{display:flex;flex-direction:column;gap:.3rem}
+.m-act{background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:.6rem;font-weight:800;color:var(--text2);padding:.3rem .5rem;cursor:pointer;white-space:nowrap}
+.m-act:active{background:var(--gold);color:#2C1A00;border-color:var(--gold)}
+.avatar-badge{position:absolute;top:6px;right:6px;background:var(--green2);color:#fff;font-size:.55rem;font-weight:800;padding:2px 6px;border-radius:8px}
+
+/* ════════════════════════════
+   AVATARES IA
+════════════════════════════ */
+.av-list-wrap{padding:.6rem}
+.av-card{display:flex;align-items:center;gap:.8rem;padding:.8rem;background:var(--panel);border:1.5px solid var(--border);border-radius:14px;margin-bottom:.5rem;cursor:pointer;transition:all .15s}
+.av-card.active{border-color:var(--gold);background:var(--bg3)}
+.av-card:active{transform:scale(.98)}
+.av-photo{width:50px;height:50px;border-radius:50%;border:2px solid var(--gold);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden}
+.av-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.av-name{font-weight:800;font-size:.85rem;color:var(--text)}
+.av-rol{font-size:.65rem;color:var(--muted);font-weight:600}
+.ai-dot{width:7px;height:7px;border-radius:50%;background:var(--green2);display:inline-block;margin-right:3px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* CHAT */
+.chat-screen{
+  position:fixed;inset:0;
+  background:var(--bg);
+  display:none;flex-direction:column;
+  z-index:200;
+}
+.chat-screen.open{display:flex}
+.chat-header{
+  background:linear-gradient(135deg,#2C1A00,#4A2E0A);
+  padding:.7rem 1rem;
+  display:flex;align-items:center;gap:.7rem;
+  flex-shrink:0;
+}
+.chat-back{background:transparent;border:none;color:var(--gold2);font-size:1.3rem;cursor:pointer;padding:.2rem}
+.chat-av-photo{width:40px;height:40px;border-radius:50%;border:2px solid var(--gold);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;overflow:hidden}
+.chat-av-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.chat-av-info{flex:1}
+.chat-av-name{font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold2);font-weight:700}
+.chat-av-sub{font-size:.6rem;color:#c9a96e;font-weight:600}
+.chat-cfg-btn{background:transparent;border:1px solid #ffffff22;color:#e8d5a0;font-size:.72rem;padding:.3rem .6rem;border-radius:8px;cursor:pointer;font-weight:700}
+
+.chat-msgs{
+  flex:1;overflow-y:auto;padding:.8rem;
+  display:flex;flex-direction:column;gap:.6rem;
+  -webkit-overflow-scrolling:touch;
+}
+.msg{display:flex;gap:.5rem;max-width:88%}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg-bubble{padding:.6rem .85rem;border-radius:14px;font-size:.85rem;line-height:1.55;font-weight:600}
+.msg.bot .msg-bubble{background:var(--panel);border:1.5px solid var(--border);border-radius:4px 14px 14px 14px;color:var(--text)}
+.msg.user .msg-bubble{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#2C1A00;border-radius:14px 4px 14px 14px}
+.msg-av{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--gold);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;overflow:hidden}
+.msg-av img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.msg-time{font-size:.55rem;color:var(--muted);margin-top:2px;font-weight:600}
+
+.typing-bub{background:var(--panel);border:1.5px solid var(--border);border-radius:4px 14px 14px 14px;padding:.5rem .8rem;display:none;gap:4px;align-items:center}
+.typing-bub.show{display:flex}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:bounce .9s infinite}
+.dot:nth-child(2){animation-delay:.15s}.dot:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+.chat-input-wrap{
+  padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));
+  background:var(--panel);border-top:1.5px solid var(--border);
+  display:flex;gap:.4rem;align-items:flex-end;flex-shrink:0;
+}
+.chat-inp{
+  flex:1;background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:20px;color:var(--text);font-family:'Nunito',sans-serif;
+  font-size:.88rem;font-weight:600;padding:.55rem .9rem;
+  resize:none;outline:none;max-height:80px;min-height:40px;
+  transition:border .2s;-webkit-appearance:none;
+}
+.chat-inp:focus{border-color:var(--gold2)}
+.chat-inp::placeholder{color:var(--muted)}
+.btn-send{background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#2C1A00;font-size:1rem;width:40px;height:40px;border-radius:50%;cursor:pointer;flex-shrink:0;font-weight:900;display:flex;align-items:center;justify-content:center}
+.btn-mic{background:var(--bg2);border:1.5px solid var(--border);color:var(--muted);font-size:1rem;width:40px;height:40px;border-radius:50%;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.btn-mic.recording{background:#C0392B22;border-color:var(--red);color:var(--red);animation:pulse 1s infinite}
+.voice-bar{display:none;background:#C0392B11;border:1px solid var(--red);border-radius:8px;padding:.3rem .7rem;font-size:.7rem;font-weight:700;color:var(--red);margin:.3rem .8rem 0;align-items:center;gap:.4rem;flex-shrink:0}
+.voice-bar.show{display:flex}
+
+/* ════════════════════════════
+   INTEGRACIONES
+════════════════════════════ */
+.int-list{padding:.6rem}
+.int-card{display:flex;align-items:center;gap:.8rem;padding:.8rem;background:var(--panel);border:1.5px solid var(--border);border-radius:14px;margin-bottom:.5rem}
+.int-logo{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.int-info{flex:1}
+.int-name{font-weight:800;font-size:.82rem;color:var(--text)}
+.int-desc{font-size:.65rem;color:var(--muted);font-weight:600;margin-top:1px}
+.int-perms{display:flex;flex-wrap:wrap;gap:.2rem;margin-top:.3rem}
+.perm-tag{background:var(--bg2);border:1px solid var(--border);border-radius:5px;font-size:.55rem;font-weight:700;color:var(--text2);padding:1px 5px}
+.toggle-wrap{flex-shrink:0}
+.toggle{position:relative;width:42px;height:24px;display:block}
+.toggle input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:#ddd;border-radius:24px;cursor:pointer;transition:.3s}
+.slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+input:checked+.slider{background:var(--green2)}
+input:checked+.slider:before{transform:translateX(18px)}
+
+/* ════════════════════════════
+   FAMILIA / KEYS
+════════════════════════════ */
+.keys-wrap{padding:.6rem}
+.key-card{background:var(--panel);border:1.5px solid var(--border);border-radius:14px;padding:.8rem;margin-bottom:.5rem}
+.key-header{display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem}
+.key-av{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.key-name{font-weight:800;font-size:.82rem;color:var(--text)}
+.key-rol{font-size:.62rem;color:var(--muted);font-weight:600}
+.key-code{font-family:'Courier New',monospace;font-size:.68rem;color:var(--gold);background:var(--bg2);padding:3px 8px;border-radius:6px;margin:.3rem 0;display:block;word-break:break-all}
+.key-perms{font-size:.62rem;color:var(--muted);font-weight:600;margin-bottom:.4rem}
+.key-btns{display:flex;gap:.3rem}
+.key-btn{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:.62rem;font-weight:800;color:var(--text2);padding:.35rem .4rem;cursor:pointer;text-align:center}
+.key-btn:active{background:var(--gold);color:#2C1A00;border-color:var(--gold)}
+.key-btn.danger:active{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* ════════════════════════════
+   MODALES (bottom sheet)
+════════════════════════════ */
+.sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end}
+.sheet-overlay.open{display:flex}
+.sheet{
+  background:var(--panel);border-radius:20px 20px 0 0;
+  width:100%;max-height:92dvh;overflow-y:auto;
+  padding:0 1rem calc(1rem + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling:touch;
+}
+.sheet-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:.7rem auto .9rem}
+.sheet h2{font-family:'Cinzel',serif;font-size:.95rem;color:var(--text);margin-bottom:1rem;letter-spacing:1px}
+
+/* FORM */
+.field{margin-bottom:.7rem}
+.field label{display:block;font-weight:800;font-size:.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.25rem}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:10px;color:var(--text);font-family:'Nunito',sans-serif;
+  font-size:.9rem;font-weight:600;padding:.55rem .8rem;outline:none;
+  -webkit-appearance:none;transition:border .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold2)}
+.field textarea{resize:none;min-height:65px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+
+.foto-drop{border:2px dashed var(--border);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;background:var(--bg2);position:relative;transition:all .2s}
+.foto-drop:active{border-color:var(--gold2);background:var(--bg3)}
+.foto-drop input{position:absolute;inset:0;opacity:0;width:100%;height:100%}
+.foto-prev{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin:0 auto .4rem;display:block}
+.foto-lbl{font-size:.7rem;font-weight:700;color:var(--muted)}
+
+.btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;color:#2C1A00;font-family:'Nunito',sans-serif;
+  font-weight:800;font-size:.88rem;padding:.65rem;border-radius:12px;
+  cursor:pointer;width:100%;margin-top:.5rem;transition:all .2s;
+  -webkit-appearance:none;
+}
+.btn:active{transform:scale(.98)}
+.btn.outline{background:transparent;border:1.5px solid var(--gold);color:var(--gold);margin-top:.3rem}
+.btn.danger{background:linear-gradient(135deg,#C0392B,#E74C3C);color:#fff}
+.btn.sm{font-size:.72rem;padding:.4rem .7rem;width:auto;margin:0}
+
+/* GALERÍA */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:.5rem}
+.photo-thumb{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:1.5px solid var(--border)}
+.photo-thumb img{width:100%;height:100%;object-fit:cover}
+.photo-del{position:absolute;top:3px;right:3px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* SELECTOR IA */
+.ia-option{display:flex;align-items:center;gap:.7rem;padding:.65rem .8rem;border-radius:12px;border:1.5px solid var(--border);margin-bottom:.4rem;cursor:pointer;transition:all .15s;background:var(--bg2)}
+.ia-option.selected{border-color:var(--gold);background:var(--bg3)}
+.ia-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.ia-name{font-weight:800;font-size:.82rem;color:var(--text)}
+.ia-sub{font-size:.62rem;color:var(--muted);font-weight:600}
+
+/* API KEY SECTION */
+.api-section{padding:.8rem;background:var(--bg2);border:1.5px solid var(--border);border-radius:12px;margin-bottom:.6rem}
+.api-section h4{font-weight:800;font-size:.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.api-row{display:flex;gap:.4rem}
+.api-inp{flex:1;background:var(--panel);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-size:.8rem;padding:.4rem .6rem;outline:none;font-family:'Nunito',sans-serif;-webkit-appearance:none}
+.api-inp:focus{border-color:var(--gold2)}
+.api-ok{background:var(--gold);border:none;border-radius:10px;padding:.4rem .7rem;font-size:.75rem;font-weight:800;cursor:pointer;color:#2C1A00;white-space:nowrap}
+
+/* FOOTER */
+.page-footer{text-align:center;padding:1rem;font-size:.6rem;color:var(--muted);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-logo">
+      <svg viewBox="0 0 52 64" fill="none">
+        <defs>
+          <linearGradient id="sg" x1="0" y1="0" x2="52" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFE066"/><stop offset="50%" stop-color="#D4A017"/><stop offset="100%" stop-color="#A07020"/>
+          </linearGradient>
+        </defs>
+        <path d="M26 2 L50 12 L50 34 Q50 52 26 62 Q2 52 2 34 L2 12 Z" fill="url(#sg)"/>
+        <path d="M26 7 L45 15 L45 34 Q45 49 26 57 Q7 49 7 34 L7 15 Z" fill="#2C1A00"/>
+        <rect x="23" y="13" width="6" height="30" rx="1" fill="#D4A017" opacity=".9"/>
+        <rect x="12" y="25" width="28" height="6" rx="1" fill="#D4A017" opacity=".9"/>
+        <circle cx="26" cy="44" r="5" fill="#2D6A4F" opacity=".9"/>
+        <circle cx="22" cy="47" r="3.5" fill="#2D6A4F" opacity=".8"/>
+        <circle cx="30" cy="47" r="3.5" fill="#2D6A4F" opacity=".8"/>
+        <rect x="25" y="49" width="2" height="4" rx="1" fill="#A07020"/>
+      </svg>
+      <span class="topbar-title">HERÁLDICA</span>
+    </div>
+    <div class="topbar-right">
+      <button class="top-ico" onclick="openSheet('sheet-api')">🔑</button>
+      <button class="top-ico" onclick="openSheet('sheet-ia')">🤖</button>
+    </div>
+  </div>
+
+  <!-- PÁGINAS -->
+  <div class="pages">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="home-hero">
+        <svg width="72" height="88" viewBox="0 0 52 64" fill="none">
+          <defs><linearGradient id="hg" x1="0" y1="0" x2="52" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FFE066"/><stop offset="50%" stop-color="#D4A017"/><stop offset="100%" stop-color="#A07020"/></linearGradient></defs>
+          <path d="M26 2 L50 12 L50 34 Q50 52 26 62 Q2 52 2 34 L2 12 Z" fill="url(#hg)"/>
+          <path d="M26 7 L45 15 L45 34 Q45 49 26 57 Q7 49 7 34 L7 15 Z" fill="#2C1A00"/>
+          <rect x="23" y="13" width="6" height="30" rx="1" fill="#D4A017" opacity=".9"/>
+          <rect x="12" y="25" width="28" height="6" rx="1" fill="#D4A017" opacity=".9"/>
+          <circle cx="26" cy="44" r="5" fill="#2D6A4F"/><circle cx="22" cy="47" r="3.5" fill="#2D6A4F" opacity=".8"/><circle cx="30" cy="47" r="3.5" fill="#2D6A4F" opacity=".8"/>
+        </svg>
+        <h2>Tu Familia Vive Aquí</h2>
+        <p>Árbol genealógico + Avatares IA de tus seres queridos</p>
+        <div class="hero-btns">
+          <button class="btn-hero primary" onclick="goTab('tree')">🌳 Empezar mi Árbol</button>
+          <button class="btn-hero secondary" onclick="goTab('avatares')">🤖 Crear Avatar IA</button>
+        </div>
+      </div>
+      <div class="feat-list">
+        <div class="feat-item" onclick="goTab('tree')">
+          <div class="feat-icon">🌳</div>
+          <div><h4>Árbol Genealógico</h4><p>Agregá familiares, fotos y construí tu linaje completo</p></div>
+        </div>
+        <div class="feat-item" onclick="goTab('avatares')">
+          <div class="feat-icon">🤖</div>
+          <div><h4>Avatar IA Familiar</h4><p>La IA habla como tu familiar — en texto y en voz</p></div>
+        </div>
+        <div class="feat-item" onclick="goTab('integraciones')">
+          <div class="feat-icon">🔗</div>
+          <div><h4>Integraciones</h4><p>Gmail, Google Fotos, Calendar y más</p></div>
+        </div>
+        <div class="feat-item" onclick="goTab('familia')">
+          <div class="feat-icon">🔑</div>
+          <div><h4>Acceso Familiar</h4><p>Invitá a tu familia para que agreguen fotos y miembros</p></div>
+        </div>
+      </div>
+      <div class="page-footer">© 2026 HERÁLDICA · v2.0 Mobile Free · Todos los derechos reservados</div>
+    </div>
+
+    <!-- ÁRBOL -->
+    <div class="page" id="page-tree">
+      <div class="tree-top">
+        <div class="tree-stats">
+          <div class="stat-pill"><span class="n" id="cnt-p">0</span><span class="l">Personas</span></div>
+          <div class="stat-pill"><span class="n" id="cnt-f">0</span><span class="l">Fotos</span></div>
+          <div class="stat-pill"><span class="n" id="cnt-l">0</span><span class="l">Vínculos</span></div>
+        </div>
+        <div class="global-prog">
+          <div class="gp-row"><span class="gp-label">📊 Progreso del árbol</span><span class="gp-pct" id="gp-pct">0%</span></div>
+          <div class="gp-bar"><div class="gp-fill" id="gp-bar" style="width:0%"></div></div>
+        </div>
+        <div class="tree-actions">
+          <button class="act-btn primary" onclick="openSheet('sheet-new-person')">＋ Agregar</button>
+          <button class="act-btn" onclick="exportarArbol()">💾 Exportar</button>
+          <label class="act-btn" style="cursor:pointer">📥 Importar<input type="file" accept=".json" style="display:none" onchange="importarArbol(event)"></label>
+          <button class="act-btn" onclick="generarCert()">📜 Cert.</button>
+        </div>
+      </div>
+      <div class="members-list" id="members-list">
+        <div style="text-align:center;padding:2rem;color:var(--muted);font-size:.82rem;font-weight:600">
+          Todavía no hay miembros.<br>Tocá <b>+ Agregar</b> para empezar.
+        </div>
+      </div>
+    </div>
+
+    <!-- AVATARES -->
+    <div class="page" id="page-avatares">
+      <div style="padding:.8rem 1rem .4rem">
+        <div class="api-section">
+          <h4>🔑 API Key</h4>
+          <div class="api-row">
+            <input type="password" class="api-inp" id="api-key-input" placeholder="sk-ant-… / sk-… / AIza…">
+            <button class="api-ok" onclick="guardarAPIKey()">OK</button>
+          </div>
+          <div id="api-status" style="font-size:.62rem;font-weight:700;color:var(--muted);margin-top:.3rem">Sin key configurada</div>
+        </div>
+        <button class="btn" onclick="openSheet('sheet-new-avatar')">＋ Nuevo Avatar IA</button>
+      </div>
+      <div class="av-list-wrap" id="av-list">
+        <div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.82rem;font-weight:600">
+          Creá un avatar para chatear con tus familiares
+        </div>
+      </div>
+    </div>
+
+    <!-- INTEGRACIONES -->
+    <div class="page" id="page-integraciones">
+      <div style="padding:.8rem 1rem .2rem">
+        <div style="font-weight:800;font-size:.78rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem">🔗 Plataformas conectadas</div>
+        <div style="font-size:.72rem;color:var(--muted);font-weight:600;margin-bottom:.6rem">El avatar IA tendrá acceso a los datos que autorices</div>
+      </div>
+      <div class="int-list" id="int-list"></div>
+      <div style="padding:.6rem 1rem">
+        <div class="api-section">
+          <h4>🏗 Desarrolladores</h4>
+          <p style="font-size:.7rem;color:var(--muted);font-weight:600;margin-bottom:.5rem">Generá un token para integrar tu app con HERÁLDICA</p>
+          <input class="api-inp" id="dev-app" placeholder="Nombre de tu app" style="width:100%;margin-bottom:.4rem">
+          <button class="btn sm outline" onclick="generarTokenDev()" style="width:100%;margin-top:0">Generar Token</button>
+          <div id="dev-token" style="font-family:'Courier New',monospace;font-size:.65rem;color:var(--gold);margin-top:.4rem;word-break:break-all;display:none"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAMILIA -->
+    <div class="page" id="page-familia">
+      <div style="padding:.8rem 1rem .4rem">
+        <div style="font-weight:800;font-size:.78rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem">🔑 Acceso Familiar</div>
+        <div style="font-size:.72rem;color:var(--muted);font-weight:600;margin-bottom:.6rem">Invitá a tu familia para que agreguen fotos y miembros</div>
+        <button class="btn" onclick="openSheet('sheet-new-key')">＋ Invitar Familiar</button>
+      </div>
+      <div class="keys-wrap" id="keys-list">
+        <div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.82rem;font-weight:600">Todavía no invitaste a nadie</div>
+      </div>
+      <div style="padding:.6rem 1rem">
+        <div class="api-section">
+          <h4>ℹ Cómo funciona</h4>
+          <p style="font-size:.72rem;color:var(--muted);font-weight:600;line-height:1.6">1. Generás una key con los permisos del familiar<br>2. Se la mandás por WhatsApp<br>3. Ellos la ingresan y ya pueden agregar fotos<br>4. Podés revocar el acceso cuando quieras</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pages -->
+
+  <!-- TAB BAR -->
+  <div class="tabbar">
+    <button class="tab active" id="tab-home" onclick="goTab('home')">
+      <span class="tab-icon">🏠</span>
+      <span class="tab-label">Inicio</span>
+      <div class="tab-dot"></div>
+    </button>
+    <button class="tab" id="tab-tree" onclick="goTab('tree')">
+      <span class="tab-icon">🌳</span>
+      <span class="tab-label">Árbol</span>
+      <div class="tab-dot"></div>
+    </button>
+    <button class="tab" id="tab-avatares" onclick="goTab('avatares')">
+      <span class="tab-icon">🤖</span>
+      <span class="tab-label">Avatares</span>
+      <div class="tab-dot"></div>
+    </button>
+    <button class="tab" id="tab-integraciones" onclick="goTab('integraciones')">
+      <span class="tab-icon">🔗</span>
+      <span class="tab-label">Conectar</span>
+      <div class="tab-dot"></div>
+    </button>
+    <button class="tab" id="tab-familia" onclick="goTab('familia')">
+      <span class="tab-icon">👨‍👩‍👧</span>
+      <span class="tab-label">Familia</span>
+      <div class="tab-dot"></div>
+    </button>
+  </div>
+
+</div><!-- /app -->
+
+<!-- CHAT SCREEN (pantalla completa) -->
+<div class="chat-screen" id="chat-screen">
+  <div class="chat-header">
+    <button class="chat-back" onclick="cerrarChat()">←</button>
+    <div class="chat-av-photo" id="chat-photo">🧑</div>
+    <div class="chat-av-info">
+      <div class="chat-av-name" id="chat-name">—</div>
+      <div class="chat-av-sub"><span class="ai-dot"></span><span id="chat-rol">Avatar IA activo</span></div>
+    </div>
+    <button class="chat-cfg-btn" onclick="openSheet('sheet-cfg-avatar')">⚙</button>
+  </div>
+  <div class="voice-bar" id="voice-bar">🎙 Escuchando…</div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div style="display:flex;gap:.5rem;align-items:center" id="typing-row">
+      <div class="msg-av" id="typing-av">🧑</div>
+      <div class="typing-bub" id="typing-bub"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <button class="btn-mic" id="btn-mic" onclick="toggleVoz()">🎙</button>
+    <textarea class="chat-inp" id="chat-inp" placeholder="Escribí tu mensaje…" rows="1"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarMsg()}"
+      oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea>
+    <button class="btn-send" onclick="enviarMsg()">➤</button>
+  </div>
+</div>
+
+<!-- ════ BOTTOM SHEETS ════ -->
+
+<!-- Nueva persona -->
+<div class="sheet-overlay" id="sheet-new-person">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>🌳 Nuevo Familiar</h2>
+    <div class="field"><label>Foto</label>
+      <div class="foto-drop" onclick="document.getElementById('np-foto').click()">
+        <img id="np-foto-prev" class="foto-prev" src="" style="display:none">
+        <div class="foto-lbl" id="np-foto-lbl">📸 Tocá para subir foto</div>
+        <input type="file" id="np-foto" accept="image/*" onchange="handleNpFoto(event)">
+      </div>
+    </div>
+    <div class="field"><label>Nombre *</label><input id="np-nombre" placeholder="ej: Clemente Valderrey"></div>
+    <div class="grid2">
+      <div class="field"><label>Nacimiento</label><input id="np-nac" placeholder="DD/MM/AAAA"></div>
+      <div class="field"><label>Fallecimiento</label><input id="np-fall" placeholder="— si vive"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Rol</label>
+        <select id="np-rol"><option>Bisabuelo/a</option><option>Abuelo/a</option><option selected>Padre/Madre</option><option>Hijo/a</option><option>Nieto/a</option><option>Cónyuge</option><option>Hermano/a</option><option>Otro</option></select>
+      </div>
+      <div class="field"><label>Género</label>
+        <select id="np-genero"><option value="">No esp.</option><option value="M">Masculino</option><option value="F">Femenino</option></select>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Origen</label><input id="np-origen" placeholder="ej: Galicia"></div>
+      <div class="field"><label>Profesión</label><input id="np-prof" placeholder="ej: Carpintero"></div>
+    </div>
+    <div class="field"><label>Historia / Notas</label><textarea id="np-notas" placeholder="Escudo, historia, anécdotas…"></textarea></div>
+    <button class="btn" onclick="crearPersona()">⬡ Agregar al Árbol</button>
+    <button class="btn outline" onclick="closeSheet('sheet-new-person')">Cancelar</button>
+  </div>
+</div>
+
+<!-- Ver/editar persona (galería) -->
+<div class="sheet-overlay" id="sheet-gallery">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 id="gal-title">Perfil</h2>
+    <div id="gal-badges" style="display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.6rem"></div>
+    <div id="gal-info" style="font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:.8rem;line-height:1.6"></div>
+    <div class="field"><label>Agregar fotos</label>
+      <div class="foto-drop" onclick="document.getElementById('gal-inp').click()">
+        📸 Tocá para subir fotos
+        <input type="file" id="gal-inp" accept="image/*" multiple onchange="handleGalFotos(event)">
+      </div>
+    </div>
+    <div class="photo-grid" id="photo-grid"></div>
+    <div class="grid2" style="margin-top:.8rem">
+      <button class="btn outline" onclick="editarPersonaSheet()">✏ Editar</button>
+      <button class="btn danger" onclick="eliminarPersonaActual()">🗑 Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Editar persona -->
+<div class="sheet-overlay" id="sheet-edit-person">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>✏ Editar Familiar</h2>
+    <div class="field"><label>Nombre</label><input id="ep-nombre"></div>
+    <div class="grid2">
+      <div class="field"><label>Nacimiento</label><input id="ep-nac"></div>
+      <div class="field"><label>Fallecimiento</label><input id="ep-fall"></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><label>Rol</label><select id="ep-rol"><option>Bisabuelo/a</option><option>Abuelo/a</option><option>Padre/Madre</option><option>Hijo/a</option><option>Nieto/a</option><option>Cónyuge</option><option>Hermano/a</option><option>Otro</option></select></div>
+      <div class="field"><label>Origen</label><input id="ep-origen"></div>
+    </div>
+    <div class="field"><label>Profesión</label><input id="ep-prof"></div>
+    <div class="field"><label>Notas</label><textarea id="ep-notas"></textarea></div>
+    <button class="btn" onclick="guardarEdicion()">Guardar</button>
+    <button class="btn outline" onclick="closeSheet('sheet-edit-person')">Cancelar</button>
+  </div>
+</div>
+
+<!-- Nuevo avatar -->
+<div class="sheet-overlay" id="sheet-new-avatar">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>🤖 Nuevo Avatar IA</h2>
+    <div class="field"><label>Foto</label>
+      <div class="foto-drop" onclick="document.getElementById('nav-foto').click()">
+        <img id="nav-foto-prev" class="foto-prev" src="" style="display:none">
+        <div class="foto-lbl" id="nav-foto-lbl">📸 Subir foto del familiar</div>
+        <input type="file" id="nav-foto" accept="image/*" onchange="handleNavFoto(event)">
+      </div>
+    </div>
+    <div class="field"><label>Nombre *</label><input id="nav-nombre" placeholder="ej: Abuelo Clemente"></div>
+    <div class="grid2">
+      <div class="field"><label>Rol</label><select id="nav-rol"><option>Abuelo/a</option><option>Bisabuelo/a</option><option>Padre/Madre</option><option>Tío/a</option><option>Otro</option></select></div>
+      <div class="field"><label>Años</label><input id="nav-anios" placeholder="1920—2005"></div>
+    </div>
+    <div class="field"><label>Personalidad y forma de ser *</label><textarea id="nav-pers" placeholder="Era trabajador, de pocas palabras pero muy sabio. Le encantaba el mate…"></textarea></div>
+    <div class="field"><label>Frases típicas</label><textarea id="nav-frases" placeholder="'El trabajo dignifica'&#10;'Familia ante todo'"></textarea></div>
+    <div class="field"><label>Historia de vida</label><textarea id="nav-historia" placeholder="Nació en 1920 en…"></textarea></div>
+    <button class="btn" onclick="crearAvatar()">⬡ Crear Avatar IA</button>
+    <button class="btn outline" onclick="closeSheet('sheet-new-avatar')">Cancelar</button>
+  </div>
+</div>
+
+<!-- Config avatar -->
+<div class="sheet-overlay" id="sheet-cfg-avatar">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>⚙ Configurar Avatar</h2>
+    <div class="field"><label>Personalidad</label><textarea id="cfg-pers" rows="3" placeholder="Cómo era esta persona…"></textarea></div>
+    <div class="field"><label>Frases típicas</label><textarea id="cfg-frases" rows="2"></textarea></div>
+    <div class="field"><label>Historia</label><textarea id="cfg-historia" rows="2"></textarea></div>
+    <div class="field"><label>Forma de hablar</label><input id="cfg-idioma" placeholder="ej: español rioplatense, pausado…"></div>
+    <div class="field"><label>Voz</label><select id="cfg-voz"></select></div>
+    <div class="field"><label>Velocidad</label><input type="range" id="cfg-vel" min=".5" max="1.5" step=".1" value=".85" style="width:100%"></div>
+    <div class="field"><label>Recordar facturas</label><label class="toggle"><input type="checkbox" id="cfg-facturas"><span class="slider"></span></label></div>
+    <button class="btn" onclick="guardarCfgAvatar()">⬡ Guardar</button>
+    <button class="btn danger" onclick="eliminarAvatar()">🗑 Eliminar Avatar</button>
+    <button class="btn outline" onclick="closeSheet('sheet-cfg-avatar')">Cerrar</button>
+  </div>
+</div>
+
+<!-- Selector IA -->
+<div class="sheet-overlay" id="sheet-ia">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>🤖 Motor de IA</h2>
+    <p style="font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:.8rem">Elegí la IA para tus avatares</p>
+    <div id="ia-options"></div>
+    <button class="btn outline" onclick="closeSheet('sheet-ia')">Listo</button>
+  </div>
+</div>
+
+<!-- API Key global -->
+<div class="sheet-overlay" id="sheet-api">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>🔑 API Keys</h2>
+    <div id="ia-api-fields"></div>
+    <button class="btn outline" onclick="closeSheet('sheet-api')">Listo</button>
+  </div>
+</div>
+
+<!-- Nueva key familiar -->
+<div class="sheet-overlay" id="sheet-new-key">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2>🔑 Invitar Familiar</h2>
+    <div class="field"><label>Nombre *</label><input id="nk-nombre" placeholder="ej: María García"></div>
+    <div class="field"><label>Relación</label><input id="nk-rel" placeholder="ej: Prima, Hermano…"></div>
+    <div class="field"><label>Permisos</label>
+      <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.2rem">
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700"><input type="checkbox" id="pk-fotos" checked> Ver y subir fotos</label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700"><input type="checkbox" id="pk-agregar"> Agregar miembros</label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700"><input type="checkbox" id="pk-editar"> Editar datos</label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700"><input type="checkbox" id="pk-avatares"> Crear avatares IA</label>
+      </div>
+    </div>
+    <button class="btn" onclick="crearKey()">⬡ Generar Key</button>
+    <button class="btn outline" onclick="closeSheet('sheet-new-key')">Cancelar</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// ESTADO
+// ═══════════════════════════════════════
+let state={personas:{},conexiones:[],apiKeys:[],avatares:{},integraciones:{gmail:false,gfotos:false,gcalendar:false,whatsapp:false,spotify:false,instagram:false},titular:'',meta:{creado:new Date().toISOString(),version:'2.0-mobile'}};
+let avActualId=null,chatHistory=[],apiKey='',iaSeleccionada='claude';
+let galNodeId=null,npFotoData='',navFotoData='',grabando=false,voces=[],reconVoz=null,textoSubido='';
+
+function uid(){return '_'+Math.random().toString(36).substr(2,9)}
+
+const IA_PROVEEDORES={
+  claude:{nombre:'Claude (Anthropic)',color:'#7C3AED',gratis:false,link:'https://console.anthropic.com',placeholder:'sk-ant-api03-…'},
+  gpt4:{nombre:'GPT-4o (OpenAI)',color:'#10A37F',gratis:false,link:'https://platform.openai.com',placeholder:'sk-…'},
+  gemini:{nombre:'Gemini (Google)',color:'#4285F4',gratis:true,link:'https://aistudio.google.com',placeholder:'AIza…'},
+};
+
+// ═══════════════════════════════════════
+// NAVEGACIÓN
+// ═══════════════════════════════════════
+function goTab(t){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+t).classList.add('active');
+  document.getElementById('tab-'+t).classList.add('active');
+}
+
+// ═══════════════════════════════════════
+// SHEETS
+// ═══════════════════════════════════════
+function openSheet(id){document.getElementById(id).classList.add('open')}
+function closeSheet(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.sheet-overlay').forEach(s=>{
+  s.addEventListener('click',e=>{if(e.target===s)s.classList.remove('open')});
+});
+
+// ═══════════════════════════════════════
+// ÁRBOL — CREAR PERSONA
+// ═══════════════════════════════════════
+function handleNpFoto(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=ev=>{
+    npFotoData=ev.target.result;
+    const p=document.getElementById('np-foto-prev');p.src=npFotoData;p.style.display='block';
+    document.getElementById('np-foto-lbl').style.display='none';
+  };r.readAsDataURL(f);
+}
+
+function crearPersona(){
+  const nombre=document.getElementById('np-nombre').value.trim();
+  if(!nombre){alert('El nombre es obligatorio');return}
+  const id=uid();
+  state.personas[id]={id,nombre,
+    nac:document.getElementById('np-nac').value,
+    fall:document.getElementById('np-fall').value,
+    rol:document.getElementById('np-rol').value,
+    genero:document.getElementById('np-genero').value,
+    origen:document.getElementById('np-origen').value,
+    prof:document.getElementById('np-prof').value,
+    notas:document.getElementById('np-notas').value,
+    fotos:npFotoData?[{name:'perfil',url:npFotoData}]:[],
+    agregado:new Date().toISOString()
+  };
+  npFotoData='';
+  guardar();renderMiembros();actualizarStats();
+  closeSheet('sheet-new-person');limpiarNP();
+}
+
+function limpiarNP(){
+  ['np-nombre','np-nac','np-fall','np-origen','np-prof','np-notas'].forEach(i=>{try{document.getElementById(i).value=''}catch(e){}});
+  document.getElementById('np-foto-prev').style.display='none';
+  document.getElementById('np-foto-lbl').style.display='block';
+}
+
+// ═══════════════════════════════════════
+// PROGRESO
+// ═══════════════════════════════════════
+function calcProg(p){
+  const campos=[
+    {v:p.nombre,w:15},{v:p.rol,w:10},{v:p.nac,w:10},{v:p.fall||'vive',w:5},
+    {v:p.genero,w:5},{v:p.origen,w:10},{v:p.prof,w:10},{v:p.notas,w:10},
+    {v:p.fotos&&p.fotos.length>0,w:15},{v:p.fotos&&p.fotos.length>2,w:10},
+  ];
+  const total=campos.reduce((s,c)=>s+c.w,0);
+  return Math.round(campos.reduce((s,c)=>s+(c.v?c.w:0),0)/total*100);
+}
+function claseProg(p){return p<30?'low':p<60?'mid':p<90?'high':'full'}
+function calcGlobal(){
+  const ps=Object.values(state.personas);if(!ps.length)return 0;
+  const avg=ps.reduce((s,p)=>s+calcProg(p),0)/ps.length;
+  return Math.min(Math.round(avg*.7+Math.min(state.conexiones.length*3,20)+Math.min(ps.length*2,10)),100);
+}
+
+// ═══════════════════════════════════════
+// RENDER MIEMBROS
+// ═══════════════════════════════════════
+const ROL_COLORS={'Bisabuelo/a':'#7C3AED','Abuelo/a':'#1D4ED8','Padre/Madre':'#059669','Hijo/a':'#D97706','Nieto/a':'#DC2626','Cónyuge':'#DB2777','Hermano/a':'#0891B2','Otro':'#6B7280'};
+
+function renderMiembros(){
+  const list=document.getElementById('members-list');
+  const personas=Object.values(state.personas);
+  if(!personas.length){
+    list.innerHTML='<div style="text-align:center;padding:2rem;color:var(--muted);font-size:.82rem;font-weight:600">Todavía no hay miembros.<br>Tocá <b>+ Agregar</b> para empezar.</div>';
+    return;
+  }
+  list.innerHTML='';
+  personas.forEach(p=>{
+    const pct=calcProg(p);const cls=claseProg(pct);
+    const rolColor=ROL_COLORS[p.rol]||'#6B7280';
+    const hasAv=Object.values(state.avatares).some(a=>a.linkedId===p.id);
+    const card=document.createElement('div');card.className='member-card';
+    card.innerHTML=`
+      ${hasAv?'<div class="avatar-badge">🤖 IA</div>':''}
+      <div class="member-photo">${p.fotos&&p.fotos.length?`<img src="${p.fotos[0].url}">`:'👤'}</div>
+      <div class="member-body">
+        <div class="member-name">${p.nombre}</div>
+        <div class="member-role" style="color:${rolColor}">${p.rol||''}</div>
+        <div class="member-dates">${p.nac||''} ${p.fall?'— '+p.fall:''}</div>
+        <div class="member-prog">
+          <div class="mp-row"><span class="mp-pct">${pct}% completado</span></div>
+          <div class="mp-bar"><div class="mp-fill ${cls}" style="width:${pct}%"></div></div>
+        </div>
+      </div>
+      <div class="member-actions">
+        <button class="m-act" onclick="event.stopPropagation();abrirGaleria('${p.id}')">📸</button>
+        <button class="m-act" onclick="event.stopPropagation();crearAvatarDesde('${p.id}')">🤖</button>
+        <button class="m-act" onclick="event.stopPropagation();agregarHijo('${p.id}')">+hijo</button>
+      </div>`;
+    card.addEventListener('click',()=>abrirGaleria(p.id));
+    list.appendChild(card);
+  });
+}
+
+function actualizarStats(){
+  const ps=Object.values(state.personas);
+  let fotos=0;ps.forEach(p=>fotos+=(p.fotos||[]).length);
+  document.getElementById('cnt-p').textContent=ps.length;
+  document.getElementById('cnt-f').textContent=fotos;
+  document.getElementById('cnt-l').textContent=state.conexiones.length;
+  const g=calcGlobal();
+  document.getElementById('gp-pct').textContent=g+'%';
+  document.getElementById('gp-bar').style.width=g+'%';
+}
+
+// ═══════════════════════════════════════
+// GALERÍA
+// ═══════════════════════════════════════
+function abrirGaleria(id){
+  galNodeId=id;const p=state.personas[id];
+  document.getElementById('gal-title').textContent=p.nombre;
+  const badges=document.getElementById('gal-badges');badges.innerHTML='';
+  const badgeStyle='background:var(--bg2);border:1px solid var(--border);border-radius:6px;font-size:.6rem;font-weight:800;color:var(--text2);padding:2px 7px';
+  if(p.rol) badges.innerHTML+=`<span style="${badgeStyle}">${p.rol}</span>`;
+  if(p.origen) badges.innerHTML+=`<span style="${badgeStyle}">${p.origen}</span>`;
+  if(p.prof) badges.innerHTML+=`<span style="${badgeStyle}">${p.prof}</span>`;
+  document.getElementById('gal-info').innerHTML=`${p.nac?'<b>Nac:</b> '+p.nac+'  ':''}${p.fall?'<b>Fall:</b> '+p.fall+'<br>':''}${p.notas||''}`;
+  renderGalGrid();openSheet('sheet-gallery');
+}
+
+function renderGalGrid(){
+  const p=state.personas[galNodeId],grid=document.getElementById('photo-grid');
+  grid.innerHTML='';
+  (p.fotos||[]).forEach((f,i)=>{
+    const d=document.createElement('div');d.className='photo-thumb';
+    d.innerHTML=`<img src="${f.url}"><button class="photo-del" onclick="eliminarFoto(${i})">✕</button>`;
+    grid.appendChild(d);
+  });
+}
+
+function handleGalFotos(e){agregarFotosAPersona(galNodeId,Array.from(e.target.files));e.target.value='';}
+function agregarFotosAPersona(id,files){
+  const p=state.personas[id];if(!p.fotos)p.fotos=[];
+  let pend=files.length;
+  files.forEach(f=>{const r=new FileReader();r.onload=ev=>{p.fotos.push({name:f.name,url:ev.target.result});pend--;if(pend===0){renderMiembros();renderGalGrid();actualizarStats();guardar();}};r.readAsDataURL(f);});
+}
+function eliminarFoto(i){state.personas[galNodeId].fotos.splice(i,1);renderMiembros();renderGalGrid();guardar();}
+
+function editarPersonaSheet(){
+  closeSheet('sheet-gallery');const p=state.personas[galNodeId];
+  ['nombre','nac','fall','rol','origen','prof','notas'].forEach(k=>{try{document.getElementById('ep-'+k).value=p[k]||''}catch(e){}});
+  openSheet('sheet-edit-person');
+}
+function guardarEdicion(){
+  const p=state.personas[galNodeId];
+  ['nombre','nac','fall','rol','origen','prof','notas'].forEach(k=>{try{p[k]=document.getElementById('ep-'+k).value}catch(e){}});
+  guardar();renderMiembros();closeSheet('sheet-edit-person');actualizarStats();
+}
+function eliminarPersonaActual(){
+  if(!confirm('¿Eliminar este familiar?'))return;
+  delete state.personas[galNodeId];
+  state.conexiones=state.conexiones.filter(c=>c[0]!==galNodeId&&c[1]!==galNodeId);
+  guardar();renderMiembros();actualizarStats();closeSheet('sheet-gallery');
+}
+
+function agregarHijo(parentId){
+  document.getElementById('np-rol').value='Hijo/a';
+  window._pendParent=parentId;
+  openSheet('sheet-new-person');
+}
+
+function crearAvatarDesde(personaId){
+  const p=state.personas[personaId];
+  document.getElementById('nav-nombre').value=p.nombre;
+  document.getElementById('nav-rol').value=p.rol||'Abuelo/a';
+  navFotoData=p.fotos&&p.fotos.length?p.fotos[0].url:'';
+  if(navFotoData){const prev=document.getElementById('nav-foto-prev');prev.src=navFotoData;prev.style.display='block';}
+  goTab('avatares');openSheet('sheet-new-avatar');
+}
+
+// ═══════════════════════════════════════
+// AVATARES
+// ═══════════════════════════════════════
+function handleNavFoto(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=ev=>{navFotoData=ev.target.result;const p=document.getElementById('nav-foto-prev');p.src=navFotoData;p.style.display='block';document.getElementById('nav-foto-lbl').style.display='none';};r.readAsDataURL(f);
+}
+
+function crearAvatar(){
+  const nombre=document.getElementById('nav-nombre').value.trim();
+  if(!nombre){alert('El nombre es obligatorio');return}
+  const id=uid();
+  state.avatares[id]={id,nombre,rol:document.getElementById('nav-rol').value,anios:document.getElementById('nav-anios').value,foto:navFotoData,personalidad:document.getElementById('nav-pers').value,frases:document.getElementById('nav-frases').value,historia:document.getElementById('nav-historia').value,idioma:'',textoSubido:'',creado:new Date().toISOString()};
+  navFotoData='';guardar();renderAvatares();closeSheet('sheet-new-avatar');
+  ['nav-nombre','nav-anios','nav-pers','nav-frases','nav-historia'].forEach(i=>{try{document.getElementById(i).value=''}catch(e){}});
+  document.getElementById('nav-foto-prev').style.display='none';
+  document.getElementById('nav-foto-lbl').style.display='block';
+}
+
+function renderAvatares(){
+  const list=document.getElementById('av-list');
+  const avs=Object.values(state.avatares);
+  if(!avs.length){list.innerHTML='<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.82rem;font-weight:600">Creá un avatar para chatear con tus familiares</div>';return;}
+  list.innerHTML='';
+  avs.forEach(av=>{
+    const card=document.createElement('div');card.className='av-card'+(av.id===avActualId?' active':'');
+    card.onclick=()=>activarAvatar(av.id);
+    card.innerHTML=`
+      <div class="av-photo">${av.foto?`<img src="${av.foto}">`:'🧑'}</div>
+      <div><div class="av-name">${av.nombre}</div><div class="av-rol"><span class="ai-dot"></span>${av.rol}</div></div>
+      <div style="margin-left:auto;font-size:1.2rem">💬</div>`;
+    list.appendChild(card);
+  });
+}
+
+function activarAvatar(id){
+  avActualId=id;chatHistory=[];
+  const av=state.avatares[id];
+  document.getElementById('chat-name').textContent=av.nombre;
+  document.getElementById('chat-rol').textContent=av.rol+(av.anios?' · '+av.anios:'');
+  const ph=document.getElementById('chat-photo');
+  ph.innerHTML=av.foto?`<img src="${av.foto}">`:'🧑';
+  const tav=document.getElementById('typing-av');
+  tav.innerHTML=av.foto?`<img src="${av.foto}">`:'🧑';
+  // Cargar cfg
+  try{document.getElementById('cfg-pers').value=av.personalidad||'';document.getElementById('cfg-frases').value=av.frases||'';document.getElementById('cfg-historia').value=av.historia||'';document.getElementById('cfg-idioma').value=av.idioma||'';}catch(e){}
+  document.getElementById('chat-screen').classList.add('open');
+  document.getElementById('chat-msgs').innerHTML='<div style="display:flex;gap:.5rem;align-items:center" id="typing-row"><div class="msg-av" id="typing-av">'+(av.foto?`<img src="${av.foto}">`:'🧑')+'</div><div class="typing-bub" id="typing-bub"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+  setTimeout(()=>agregarMsg('bot','Hola! Soy '+av.nombre+'. ¡Qué bueno que vengas a charlar! 😊'),700);
+  renderAvatares();
+}
+
+function cerrarChat(){document.getElementById('chat-screen').classList.remove('open');}
+
+function agregarMsg(rol,texto,voz=true){
+  const av=state.avatares[avActualId];
+  const msgs=document.getElementById('chat-msgs');
+  const tr=document.getElementById('typing-row');
+  const div=document.createElement('div');div.className='msg '+rol;
+  const av_el=document.createElement('div');av_el.className='msg-av';
+  if(rol==='bot'){av_el.innerHTML=av?.foto?`<img src="${av.foto}">`:'🧑';}else av_el.textContent='🙋';
+  const inner=document.createElement('div');
+  const bub=document.createElement('div');bub.className='msg-bubble';bub.textContent=texto;
+  const time=document.createElement('div');time.className='msg-time';time.textContent=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  inner.appendChild(bub);inner.appendChild(time);div.appendChild(av_el);div.appendChild(inner);
+  msgs.insertBefore(div,tr);msgs.scrollTop=msgs.scrollHeight;
+  if(rol==='bot'){chatHistory.push({role:'assistant',content:texto});if(voz)hablarTexto(texto);}
+  else chatHistory.push({role:'user',content:texto});
+}
+
+function mostrarTyping(s){document.getElementById('typing-bub').className='typing-bub'+(s?' show':'');if(s)document.getElementById('chat-msgs').scrollTop=9999;}
+
+async function enviarMsg(){
+  const inp=document.getElementById('chat-inp'),txt=inp.value.trim();
+  if(!txt||!avActualId)return;
+  inp.value='';inp.style.height='auto';
+  agregarMsg('user',txt,false);mostrarTyping(true);
+  try{const r=await llamarIA(txt);mostrarTyping(false);agregarMsg('bot',r);}
+  catch(e){mostrarTyping(false);agregarMsg('bot','Disculpame, verificá la API key.',false);}
+}
+
+function construirSystem(av){
+  return `Sos un avatar digital de ${av.nombre}. Hablás en primera persona como esa persona.
+QUIÉN SOS: ${av.nombre}, ${av.rol}, ${av.anios||''}
+PERSONALIDAD: ${av.personalidad||'Persona cariñosa y sabia.'}
+HISTORIA: ${av.historia||'Sin historia cargada.'}
+FRASES: ${av.frases||'Sin frases.'}
+FORMA DE HABLAR: ${av.idioma||'Español rioplatense, cálido.'}
+Respondé siempre en primera persona, con emoción y calidez. Máximo 3 oraciones.`;
+}
+
+async function llamarIA(msg){
+  if(!apiKey)return respDemo(msg);
+  const av=state.avatares[avActualId];
+  const sys=construirSystem(av);
+  try{
+    if(iaSeleccionada==='claude'){
+      if(!apiKey.startsWith('sk-ant'))return respDemo(msg);
+      const msgs=[...chatHistory.slice(-6),{role:'user',content:msg}].filter(m=>m.role&&m.content);
+      const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,system:sys,messages:msgs})});
+      if(!r.ok)throw new Error();return(await r.json()).content[0].text;
+    }else if(iaSeleccionada==='gpt4'){
+      const msgs=[{role:'system',content:sys},...chatHistory.slice(-6),{role:'user',content:msg}];
+      const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'gpt-4o',messages:msgs,max_tokens:400})});
+      if(!r.ok)throw new Error();return(await r.json()).choices[0].message.content;
+    }else if(iaSeleccionada==='gemini'){
+      const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:sys+'\nUsuario: '+msg}]}]})});
+      if(!r.ok)throw new Error();return(await r.json()).candidates[0].content.parts[0].text;
+    }
+  }catch(e){return respDemo(msg);}
+}
+
+function respDemo(msg){
+  const av=state.avatares[avActualId];
+  return['¡Qué pregunta! La vida me enseñó que lo importante es la familia.','Eso me recuerda a cuando era joven... ¡Qué tiempos!','Para que te responda de verdad, configurá la API key arriba.','Mirá, siempre decía que hay que trabajar duro y querer a los tuyos.'][Math.floor(Math.random()*4)];
+}
+
+function guardarCfgAvatar(){
+  if(!avActualId)return;const av=state.avatares[avActualId];
+  av.personalidad=document.getElementById('cfg-pers').value;
+  av.frases=document.getElementById('cfg-frases').value;
+  av.historia=document.getElementById('cfg-historia').value;
+  av.idioma=document.getElementById('cfg-idioma').value;
+  guardar();closeSheet('sheet-cfg-avatar');alert('✅ Personalidad actualizada.');
+}
+
+function eliminarAvatar(){
+  if(!avActualId||!confirm('¿Eliminar este avatar?'))return;
+  delete state.avatares[avActualId];avActualId=null;
+  guardar();renderAvatares();cerrarChat();closeSheet('sheet-cfg-avatar');
+}
+
+// ═══════════════════════════════════════
+// VOZ
+// ═══════════════════════════════════════
+function cargarVoces(){
+  const load=()=>{voces=speechSynthesis.getVoices().filter(v=>v.lang.startsWith('es'));const s=document.getElementById('cfg-voz');if(s){s.innerHTML='';voces.forEach((v,i)=>{const o=document.createElement('option');o.value=i;o.textContent=v.name;s.appendChild(o);})}};
+  speechSynthesis.addEventListener('voiceschanged',load);load();
+}
+function hablarTexto(t){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='es-AR';const vi=parseInt(document.getElementById('cfg-voz')?.value||0);if(voces[vi])u.voice=voces[vi];u.rate=parseFloat(document.getElementById('cfg-vel')?.value||.85);speechSynthesis.speak(u);}
+function iniciarRecon(){if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window))return;const SR=window.SpeechRecognition||window.webkitSpeechRecognition;reconVoz=new SR();reconVoz.lang='es-AR';reconVoz.onresult=e=>{document.getElementById('chat-inp').value=e.results[0][0].transcript;grabando=false;document.getElementById('btn-mic').classList.remove('recording');document.getElementById('voice-bar').classList.remove('show');enviarMsg();};reconVoz.onerror=reconVoz.onend=()=>{grabando=false;document.getElementById('btn-mic').classList.remove('recording');document.getElementById('voice-bar').classList.remove('show');};}
+function toggleVoz(){if(!reconVoz){alert('Usá Chrome para voz.');return}if(grabando){reconVoz.stop();grabando=false;document.getElementById('btn-mic').classList.remove('recording');document.getElementById('voice-bar').classList.remove('show');}else{speechSynthesis.cancel();reconVoz.start();grabando=true;document.getElementById('btn-mic').classList.add('recording');document.getElementById('voice-bar').classList.add('show');}}
+
+// ═══════════════════════════════════════
+// API KEY & SELECTOR IA
+// ═══════════════════════════════════════
+function guardarAPIKey(){
+  apiKey=document.getElementById('api-key-input').value.trim();
+  localStorage.setItem('heraldica_api_key',apiKey);actualizarStatusKey();
+}
+function actualizarStatusKey(){
+  const el=document.getElementById('api-status');if(!el)return;
+  if(apiKey&&(apiKey.startsWith('sk-ant')||apiKey.startsWith('sk-')||apiKey.startsWith('AIza'))){el.textContent='✅ Key activa';el.style.color='var(--green2)';}
+  else{el.textContent='Sin key configurada';el.style.color='var(--muted)';}
+}
+
+function renderSelectorIA(){
+  const cont=document.getElementById('ia-options');if(!cont)return;
+  cont.innerHTML='';
+  Object.entries(IA_PROVEEDORES).forEach(([k,v])=>{
+    const d=document.createElement('div');d.className='ia-option'+(k===iaSeleccionada?' selected':'');
+    d.onclick=()=>{iaSeleccionada=k;localStorage.setItem('heraldica_ia',k);renderSelectorIA();};
+    d.innerHTML=`<div class="ia-dot" style="background:${v.color}"></div><div><div class="ia-name">${v.nombre}</div><div class="ia-sub">${v.gratis?'✅ Gratuito':'🔑 Key propia'} · <a href="${v.link}" target="_blank" style="color:var(--gold)">Obtener key</a></div></div>`;
+    cont.appendChild(d);
+  });
+}
+
+function renderAPIFields(){
+  const cont=document.getElementById('ia-api-fields');if(!cont)return;
+  cont.innerHTML='';
+  Object.entries(IA_PROVEEDORES).forEach(([k,v])=>{
+    const sec=document.createElement('div');sec.className='api-section';sec.style.marginBottom='.6rem';
+    sec.innerHTML=`<h4><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${v.color};margin-right:.3rem"></span>${v.nombre}</h4><div class="api-row"><input class="api-inp" type="password" id="key-${k}" placeholder="${v.placeholder}" value="${k===iaSeleccionada&&apiKey?apiKey:''}"><button class="api-ok" onclick="guardarKeyIA('${k}')">OK</button></div><div style="font-size:.6rem;color:var(--muted);font-weight:600;margin-top:.2rem">${v.gratis?'Capa gratuita disponible':''} <a href="${v.link}" target="_blank" style="color:var(--gold)">→ Obtener key</a></div>`;
+    cont.appendChild(sec);
+  });
+}
+
+function guardarKeyIA(k){
+  const val=document.getElementById('key-'+k)?.value.trim();if(!val)return;
+  iaSeleccionada=k;apiKey=val;
+  document.getElementById('api-key-input').value=val;
+  localStorage.setItem('heraldica_api_key',val);localStorage.setItem('heraldica_ia',k);
+  actualizarStatusKey();alert('✅ Key guardada para '+IA_PROVEEDORES[k].nombre);
+}
+
+// ═══════════════════════════════════════
+// INTEGRACIONES
+// ═══════════════════════════════════════
+const INTEGRACIONES=[
+  {id:'gmail',nombre:'Gmail',icon:'📧',color:'#EA4335',desc:'Lee emails y recuerda facturas',perms:['Leer emails','Recordatorios']},
+  {id:'gfotos',nombre:'Google Fotos',icon:'🖼',color:'#4285F4',desc:'Importa fotos desde tu galería',perms:['Leer álbumes','Importar']},
+  {id:'gcalendar',nombre:'Calendar',icon:'📅',color:'#0F9D58',desc:'Eventos y cumpleaños familiares',perms:['Ver eventos']},
+  {id:'whatsapp',nombre:'WhatsApp',icon:'💬',color:'#25D366',desc:'Mensajes del avatar por WhatsApp',perms:['Mensajes']},
+  {id:'spotify',nombre:'Spotify',icon:'🎵',color:'#1DB954',desc:'Música favorita del familiar',perms:['Reproducción']},
+  {id:'instagram',nombre:'Instagram',icon:'📷',color:'#E1306C',desc:'Importa fotos y recuerdos',perms:['Leer perfil']},
+];
+
+function renderIntegraciones(){
+  const list=document.getElementById('int-list');list.innerHTML='';
+  INTEGRACIONES.forEach(int=>{
+    const activo=state.integraciones[int.id]||false;
+    const card=document.createElement('div');card.className='int-card';
+    card.innerHTML=`
+      <div class="int-logo" style="background:${int.color}22;border:1.5px solid ${int.color}44">${int.icon}</div>
+      <div class="int-info">
+        <div class="int-name">${int.nombre}</div>
+        <div class="int-desc">${int.desc}</div>
+        <div class="int-perms">${int.perms.map(p=>`<span class="perm-tag">${p}</span>`).join('')}</div>
+      </div>
+      <div class="toggle-wrap">
+        <label class="toggle"><input type="checkbox" ${activo?'checked':''} onchange="toggleInt('${int.id}',this.checked)"><span class="slider"></span></label>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function toggleInt(id,val){
+  state.integraciones[id]=val;
+  if(val)alert('✅ '+id+' conectado (simulado). En producción abrirá OAuth.');
+  guardar();
+}
+
+function generarTokenDev(){
+  const nombre=document.getElementById('dev-app').value.trim();if(!nombre){alert('Escribí el nombre de tu app');return}
+  const token='HLD-DEV-'+Math.random().toString(36).substr(2,12).toUpperCase();
+  const el=document.getElementById('dev-token');el.style.display='block';el.textContent=`"${nombre}": ${token}`;
+}
+
+// ═══════════════════════════════════════
+// FAMILIA / KEYS
+// ═══════════════════════════════════════
+function crearKey(){
+  const nombre=document.getElementById('nk-nombre').value.trim();if(!nombre){alert('El nombre es obligatorio');return}
+  const perms=[];
+  if(document.getElementById('pk-fotos').checked)perms.push('fotos');
+  if(document.getElementById('pk-agregar').checked)perms.push('agregar');
+  if(document.getElementById('pk-editar').checked)perms.push('editar');
+  if(document.getElementById('pk-avatares').checked)perms.push('avatares');
+  const key='HLD-FAM-'+Math.random().toString(36).substr(2,8).toUpperCase();
+  state.apiKeys.push({key,nombre,rel:document.getElementById('nk-rel').value,perms,creada:new Date().toISOString()});
+  guardar();renderKeys();closeSheet('sheet-new-key');
+  ['nk-nombre','nk-rel'].forEach(i=>{try{document.getElementById(i).value=''}catch(e){}});
+}
+
+function renderKeys(){
+  const list=document.getElementById('keys-list');
+  if(!state.apiKeys.length){list.innerHTML='<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.82rem;font-weight:600">Todavía no invitaste a nadie</div>';return;}
+  list.innerHTML='';
+  state.apiKeys.forEach((k,i)=>{
+    const card=document.createElement('div');card.className='key-card';
+    card.innerHTML=`
+      <div class="key-header"><div class="key-av">🧑</div><div><div class="key-name">${k.nombre}</div><div class="key-rol">${k.rel||''}</div></div></div>
+      <code class="key-code">${k.key}</code>
+      <div class="key-perms">Permisos: ${k.perms.join(', ')||'solo lectura'}</div>
+      <div class="key-btns">
+        <button class="key-btn" onclick="copiarKey('${k.key}')">📋 Copiar</button>
+        <button class="key-btn" onclick="compartirKey('${k.key}','${k.nombre}')">📤 Compartir</button>
+        <button class="key-btn danger" onclick="revocarKey(${i})">✕ Revocar</button>
+      </div>`;
+    list.appendChild(card);
+  });
+}
+
+function copiarKey(k){navigator.clipboard.writeText(k).then(()=>alert('✅ Copiado!'))}
+function compartirKey(k,n){if(navigator.share){navigator.share({title:'HERÁLDICA',text:`Hola ${n}! Tu key: ${k}`});}else copiarKey(k);}
+function revocarKey(i){if(!confirm('¿Revocar acceso?'))return;state.apiKeys.splice(i,1);guardar();renderKeys();}
+
+// ═══════════════════════════════════════
+// EXPORTAR / IMPORTAR
+// ═══════════════════════════════════════
+function exportarArbol(){
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));a.download='heraldica_'+new Date().toISOString().slice(0,10)+'.json';a.click();
+}
+function importarArbol(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=ev=>{try{state=JSON.parse(ev.target.result);renderMiembros();renderAvatares();renderKeys();renderIntegraciones();actualizarStats();guardar();}catch(err){alert('Error: '+err.message);}};r.readAsText(f);
+}
+function generarCert(){
+  const firma=btoa(JSON.stringify(state)).slice(0,64);
+  const cert=`CERTIFICADO HERÁLDICA\n${'='.repeat(30)}\nPersonas: ${Object.keys(state.personas).length}\nFirma: ${firma}\n© 2026 HERÁLDICA`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([cert],{type:'text/plain'}));a.download='heraldica_cert.txt';a.click();
+}
+
+// ═══════════════════════════════════════
+// GUARDAR / CARGAR
+// ═══════════════════════════════════════
+function guardar(){try{localStorage.setItem('heraldica_mobile',JSON.stringify(state));}catch(e){}}
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  /* autoría embebida — no se muestra */
+  try{
+    const saved=localStorage.getItem('heraldica_mobile');
+    if(saved)state=JSON.parse(saved);
+    apiKey=localStorage.getItem('heraldica_api_key')||'';
+    iaSeleccionada=localStorage.getItem('heraldica_ia')||'claude';
+    if(apiKey)document.getElementById('api-key-input').value=apiKey;
+  }catch(e){}
+  renderMiembros();renderAvatares();renderKeys();renderIntegraciones();
+  actualizarStats();actualizarStatusKey();cargarVoces();iniciarRecon();
+  renderSelectorIA();renderAPIFields();
+});
+</script>
+</body>
+</html>
